@@ -1,5 +1,6 @@
 package tn.esprit.autoloc.autoloc.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -19,4 +20,8 @@ public class Employe {
     String prenom;
     @Enumerated(EnumType.STRING)
     RoleEmploye role;
+
+    // Plusieurs employés travaillent dans une agence
+    @ManyToOne
+    Agence agence;
 }

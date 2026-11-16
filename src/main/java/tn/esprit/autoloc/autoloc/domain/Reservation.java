@@ -1,5 +1,6 @@
 package tn.esprit.autoloc.autoloc.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -21,4 +22,17 @@ public class Reservation {
     LocalDate dateFin;
     @Enumerated(EnumType.STRING)
     StatutReservation statut;
+
+    // Plusieurs réservations pour un client
+    @ManyToOne
+    Client client;
+
+    // Plusieurs réservations pour un véhicule
+    @ManyToOne
+    Vehicule vehicule;
+
+    // Une réservation donne lieu à un seul contrat
+    @OneToOne(mappedBy = "reservation")
+    @JsonIgnore
+    Contrat contrat;
 }

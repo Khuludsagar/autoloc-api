@@ -1,5 +1,6 @@
 package tn.esprit.autoloc.autoloc.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -20,4 +21,8 @@ public class Maintenance {
     LocalDate dateDebut;
     LocalDate dateFin;
     String description;
+
+    // Plusieurs maintenances concernent un véhicule
+    @ManyToOne
+    Vehicule vehicule;
 }
